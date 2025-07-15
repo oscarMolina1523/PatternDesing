@@ -43,3 +43,23 @@ abstract class NotificacionCreator {
     }
 }
 
+//concrete creator for every type of notification
+class EmailCreator extends NotificacionCreator {
+    public crearNotificacion(): Notificacion {
+        return new NotificacionEmail();
+    }
+}
+
+class SMSCreator extends NotificacionCreator {
+    public crearNotificacion(): Notificacion {
+        return new NotificacionSMS();
+    }
+}
+
+class PushCreator extends NotificacionCreator {
+    public crearNotificacion(): Notificacion {
+        return new NotificacionPush();
+    }
+}
+
+

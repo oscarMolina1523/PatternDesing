@@ -7,7 +7,26 @@
 // Push notification
 // The client doesn't need to worry about what type of notification it is; they'll just call a method to send it.
 
-//define the interface to implement in all notifications
+//define the interface to be implemented in all notifications
 interface Notificacion {
     enviar(mensaje: string): void;
+}
+
+//create the specific products
+class NotificacionEmail implements Notificacion {
+    enviar(mensaje: string): void {
+        console.log(`Enviando EMAIL con mensaje: ${mensaje}`);
+    }
+}
+
+class NotificacionSMS implements Notificacion {
+    enviar(mensaje: string): void {
+        console.log(`Enviando SMS con mensaje: ${mensaje}`);
+    }
+}
+
+class NotificacionPush implements Notificacion {
+    enviar(mensaje: string): void {
+        console.log(`Enviando PUSH con mensaje: ${mensaje}`);
+    }
 }

@@ -30,3 +30,16 @@ class NotificacionPush implements Notificacion {
         console.log(`Enviando PUSH con mensaje: ${mensaje}`);
     }
 }
+
+//create an abstract creator
+abstract class NotificacionCreator {
+    //factory method that will be implemented in all subclases
+    public abstract crearNotificacion(): Notificacion;
+
+    //main operation to use in the product
+    public enviarNotificacion(mensaje: string): void {
+        const notificacion = this.crearNotificacion();
+        notificacion.enviar(mensaje);
+    }
+}
+

@@ -6,3 +6,8 @@
 // SMS
 // Push notification
 // The client doesn't need to worry about what type of notification it is; they'll just call a method to send it.
+
+//define the interface to implement in all notifications
+interface Notificacion {
+    enviar(mensaje: string): void;
+}

@@ -62,4 +62,26 @@ class PushCreator extends NotificacionCreator {
     }
 }
 
+export {
+    NotificacionCreator,
+    EmailCreator,
+    SMSCreator,
+    PushCreator
+};
+
+
+//client implementation
+// function cliente(c: NotificacionCreator, mensaje: string) {
+//     console.log('Cliente: enviando notificación sin saber su clase concreta...');
+//     c.enviarNotificacion(mensaje);
+// }
+
+// console.log('--- Usando EmailCreator ---');
+// cliente(new EmailCreator(), 'Hola por Email');
+
+// console.log('\n--- Usando SMSCreator ---');
+// cliente(new SMSCreator(), 'Hola por SMS');
+
+// console.log('\n--- Usando PushCreator ---');
+// cliente(new PushCreator(), 'Hola por Push Notification');
 

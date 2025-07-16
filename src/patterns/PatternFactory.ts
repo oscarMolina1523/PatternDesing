@@ -8,66 +8,66 @@
 // The client doesn't need to worry about what type of notification it is; they'll just call a method to send it.
 
 //define the interface to be implemented in all notifications
-interface Notificacion {
-    enviar(mensaje: string): void;
+interface Notification {
+    send(message: string): void;
 }
 
 //create the specific products
-class NotificacionEmail implements Notificacion {
+class NotificacionEmail implements Notification {
     //this method send the message and connect with database
-    enviar(mensaje: string): void {
-        console.log(`Enviando EMAIL con mensaje: ${mensaje}`);
+    send(message: string): void {
+        console.log(`Enviando EMAIL con message: ${message}`);
     }
 }
 
-class NotificacionSMS implements Notificacion {
-    enviar(mensaje: string): void {
-        console.log(`Enviando SMS con mensaje: ${mensaje}`);
+class NotificacionSMS implements Notification {
+    send(message: string): void {
+        console.log(`Enviando SMS con message: ${message}`);
     }
 }
 
-class NotificacionPush implements Notificacion {
-    enviar(mensaje: string): void {
-        console.log(`Enviando PUSH con mensaje: ${mensaje}`);
+class NotificacionPush implements Notification {
+    send(message: string): void {
+        console.log(`Enviando PUSH con message: ${message}`);
     }
 }
 
 //create an abstract creator
-abstract class NotificacionCreator {
+abstract class notificationcreator {
     //factory method that will be implemented in all subclases
     //return a type of notificationcreator to have
-    public abstract crearNotificacion(): Notificacion;
+    public abstract createNotification(): Notification;
 
     //main operation to use in the product
     //obtain the notification selected and send the string to the 
-    //method enviar in the implementation of the notificationcreator selected
-    public enviarNotificacion(mensaje: string): void {
-        const notificacion = this.crearNotificacion();
-        notificacion.enviar(mensaje);
+    //method send in the implementation of the notificationcreator selected
+    public sendNotification(message: string): void {
+        const notification = this.createNotification();
+        notification.send(message);
     }
 }
 
 //concrete creator for every type of notification
-class EmailCreator extends NotificacionCreator {
-    public crearNotificacion(): Notificacion {
+class EmailCreator extends notificationcreator {
+    public createNotification(): Notification {
         return new NotificacionEmail();
     }
 }
 
-class SMSCreator extends NotificacionCreator {
-    public crearNotificacion(): Notificacion {
+class SMSCreator extends notificationcreator {
+    public createNotification(): Notification {
         return new NotificacionSMS();
     }
 }
 
-class PushCreator extends NotificacionCreator {
-    public crearNotificacion(): Notificacion {
+class PushCreator extends notificationcreator {
+    public createNotification(): Notification {
         return new NotificacionPush();
     }
 }
 
 export {
-    NotificacionCreator,
+    notificationcreator,
     EmailCreator,
     SMSCreator,
     PushCreator
@@ -75,9 +75,9 @@ export {
 
 
 //client implementation
-// function cliente(c: NotificacionCreator, mensaje: string) {
+// function cliente(c: notificationcreator, message: string) {
 //     console.log('Cliente: enviando notificación sin saber su clase concreta...');
-//     c.enviarNotificacion(mensaje);
+//     c.sendNotification(message);
 // }
 
 // console.log('--- Usando EmailCreator ---');

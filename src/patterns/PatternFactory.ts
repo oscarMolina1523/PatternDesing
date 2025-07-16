@@ -33,14 +33,14 @@ class NotificacionPush implements Notification {
 }
 
 //create an abstract creator
-abstract class notificationcreator {
+abstract class Notificationcreator {
     //factory method that will be implemented in all subclases
-    //return a type of notificationcreator to have
+    //return a type of Notificationcreator to have
     public abstract createNotification(): Notification;
 
     //main operation to use in the product
     //obtain the notification selected and send the string to the 
-    //method send in the implementation of the notificationcreator selected
+    //method send in the implementation of the Notificationcreator selected
     public sendNotification(message: string): void {
         const notification = this.createNotification();
         notification.send(message);
@@ -48,26 +48,26 @@ abstract class notificationcreator {
 }
 
 //concrete creator for every type of notification
-class EmailCreator extends notificationcreator {
+class EmailCreator extends Notificationcreator {
     public createNotification(): Notification {
         return new NotificacionEmail();
     }
 }
 
-class SMSCreator extends notificationcreator {
+class SMSCreator extends Notificationcreator {
     public createNotification(): Notification {
         return new NotificacionSMS();
     }
 }
 
-class PushCreator extends notificationcreator {
+class PushCreator extends Notificationcreator {
     public createNotification(): Notification {
         return new NotificacionPush();
     }
 }
 
 export {
-    notificationcreator,
+    Notificationcreator,
     EmailCreator,
     SMSCreator,
     PushCreator
@@ -75,7 +75,7 @@ export {
 
 
 //client implementation
-// function cliente(c: notificationcreator, message: string) {
+// function cliente(c: Notificationcreator, message: string) {
 //     console.log('Cliente: enviando notificación sin saber su clase concreta...');
 //     c.sendNotification(message);
 // }

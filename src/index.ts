@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import { EmailCreator, SMSCreator, PushCreator, NotificacionCreator } from "./patterns/PatternFactory";
+import { EmailCreator, SMSCreator, PushCreator, Notificationcreator } from "./patterns/PatternFactory";
 
 const app = express();
 const port = 3000;
@@ -14,7 +14,7 @@ app.get("/", (req: Request, res: Response) => {
 app.post("/notificar", (req: Request, res: Response) => {
   const { tipo, mensaje } = req.body;
 
-  let creator: NotificacionCreator;
+  let creator: Notificationcreator;
 
   switch (tipo) {
     case "email":
@@ -31,7 +31,7 @@ app.post("/notificar", (req: Request, res: Response) => {
   }
 
   // Usa el factory method para enviar la notificación
-  creator.enviarNotificacion(mensaje);
+  creator.sendNotification(mensaje);
 
   res.json({ success: true, message: `Notificación enviada por ${tipo}` });
 });

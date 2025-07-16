@@ -10,6 +10,7 @@ app.get("/", (req: Request, res: Response) => {
   res.send("Hello World with TypeScript and Express!");
 });
 
+//this method use the factory pattern
 app.post("/notificar", (req: Request, res: Response) => {
   const { tipo, mensaje } = req.body;
 

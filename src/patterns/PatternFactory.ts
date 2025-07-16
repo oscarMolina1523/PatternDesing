@@ -14,6 +14,7 @@ interface Notificacion {
 
 //create the specific products
 class NotificacionEmail implements Notificacion {
+    //this method send the message and connect with database
     enviar(mensaje: string): void {
         console.log(`Enviando EMAIL con mensaje: ${mensaje}`);
     }
@@ -34,9 +35,12 @@ class NotificacionPush implements Notificacion {
 //create an abstract creator
 abstract class NotificacionCreator {
     //factory method that will be implemented in all subclases
+    //return a type of notificationcreator to have
     public abstract crearNotificacion(): Notificacion;
 
     //main operation to use in the product
+    //obtain the notification selected and send the string to the 
+    //method enviar in the implementation of the notificationcreator selected
     public enviarNotificacion(mensaje: string): void {
         const notificacion = this.crearNotificacion();
         notificacion.enviar(mensaje);

@@ -32,3 +32,20 @@ class ConcreteProductA1 implements AbstractProductA {
 class ConcreteProductA2 implements AbstractProductA {
     usefulFunctionA(): string { return "Result A2"; }
 }
+
+class ConcreteProductB1 implements AbstractProductB {
+    usefulFunctionB(): string { return "Result B1"; }
+
+    anotherUsefulFunctionB(collaborator: AbstractProductA): string {
+        const result = collaborator.usefulFunctionA();
+        return `B1 collaborates with (${result})`;
+    }
+}
+class ConcreteProductB2 implements AbstractProductB {
+    usefulFunctionB(): string { return "Result B2"; }
+
+    anotherUsefulFunctionB(collaborator: AbstractProductA): string {
+        const result = collaborator.usefulFunctionA();
+        return `B2 collaborates with (${result})`;
+    }
+}

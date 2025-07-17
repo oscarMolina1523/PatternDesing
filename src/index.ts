@@ -68,6 +68,7 @@ app.post("/components", (req: Request, res: Response) => {
   });
 });
 
+//this method use the Adapter pattern
 app.post("/pagar", (req: Request, res: Response) => {
   const { proveedor, cantidad } = req.body;
 

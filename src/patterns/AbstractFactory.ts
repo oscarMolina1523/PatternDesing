@@ -25,3 +25,10 @@ class ConcreteFactory2 implements AbstractFactory {
     createProductA(): AbstractProductA { return new ConcreteProductA2(); }
     createProductB(): AbstractProductB { return new ConcreteProductB2(); }
 }
+
+class ConcreteProductA1 implements AbstractProductA {
+    usefulFunctionA(): string { return "Result A1"; }
+}
+class ConcreteProductA2 implements AbstractProductA {
+    usefulFunctionA(): string { return "Result A2"; }
+}

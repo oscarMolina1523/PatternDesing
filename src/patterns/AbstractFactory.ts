@@ -1,3 +1,13 @@
+// 🔷 2. Abstract Factory
+// ✅ What is it?
+
+// ➡️ It's a pattern for creating families of related products.
+// ➡️ It provides an interface for creating multiple related products (family), without specifying their concrete classes.
+
+// ✨ When to use Abstract Factory?
+// ✔️ When you need to create multiple products that must always be compatible with each other.
+// ✔️ When you want to ensure consistency of styles or variants.
+
 //This is the interface of type button
 interface Button {
   render(): string;

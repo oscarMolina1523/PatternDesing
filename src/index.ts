@@ -1,6 +1,7 @@
 import express, { Request, Response } from "express";
 import { EmailCreator, SMSCreator, PushCreator, Notificationcreator } from "./patterns/PatternFactory";
 import { GUIFactory, MacFactory, WindowsFactory } from "./patterns/AbstractFactory";
+import { PaymentGateway, PayPalAdapter, PayPalSDK, StripeAdapter, StripeSDK } from "./patterns/Adapter";
 
 const app = express();
 const port = 3000;
@@ -65,6 +66,26 @@ app.post("/components", (req: Request, res: Response) => {
     checkbox: checkbox.render(),
     toggleResult: checkbox.toggle(button)
   });
+});
+
+app.post("/pagar", (req: Request, res: Response) => {
+  const { proveedor, cantidad } = req.body;
+
+  let pasarela: PaymentGateway;
+
+  switch (proveedor) {
+    case "stripe":
+      pasarela = new StripeAdapter(new StripeSDK());
+      break;
+    case "paypal":
+      pasarela = new PayPalAdapter(new PayPalSDK());
+      break;
+    default:
+      return res.status(400).json({ error: "Proveedor no soportado (stripe, paypal)" });
+  }
+
+  const resultado = pasarela.processPayment(cantidad);
+  res.json({ success: true, resultado });
 });
 
 app.listen(port, () => {

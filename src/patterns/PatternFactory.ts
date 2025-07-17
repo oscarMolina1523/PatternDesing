@@ -1,3 +1,13 @@
+// 🔷 1. Factory Method (Factory Pattern)
+// ✅ What is it?
+
+// ➡️ It's a pattern for creating individual objects.
+// ➡️ It defines a method in a base (abstract) class to create an object, but allows subclasses to decide which specific class to instantiate.
+
+// ✨ When to use Factory Method?
+// ✔️ When you need to create a single type of product, but you don't know its exact class until runtime.
+// ✔️ When you want to delegate creation to subclasses.
+
 //Explaining the factory pattern, Easy to understand
 //The goal is not to depend on a single class but to pass
 //it the implementation only and the rest will be done by itself.

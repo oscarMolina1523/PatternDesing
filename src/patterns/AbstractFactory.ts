@@ -85,11 +85,11 @@ class MacCheckbox implements Checkbox {
 }
 
 
-function app(factory: GUIFactory) {
-  const button = factory.createButton();
-  const checkbox = factory.createCheckbox();
+// function app(factory: GUIFactory) {
+//   const button = factory.createButton();
+//   const checkbox = factory.createCheckbox();
 
-  console.log(button.render());
-  console.log(checkbox.render());
-  console.log(checkbox.toggle(button));
-}
+//   console.log(button.render());
+//   console.log(checkbox.render());
+//   console.log(checkbox.toggle(button));
+// }

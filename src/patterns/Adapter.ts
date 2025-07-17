@@ -1,23 +1,28 @@
-// 1. Target interface que tu sistema entiende
+//🔷 3. Adapter
+// It is used to adapt the third-party implementation code to what the
+// client expects, that is, it allows us to override a method without problems.
+//more info in my notion: https://www.notion.so/Desing-Pattern-2337c9c9fb1780f9a277c47d6fc37878?source=copy_link
+
+// this is the base interface by defect
 export interface PaymentGateway {
   processPayment(amount: number): string;
 }
 
-// 2. Adaptee: Stripe SDK con interfaz diferente
+// class defect of stripe 
 export class StripeSDK {
   makePayment(value: number): string {
     return `✅ Pago de $${value} procesado con STRIPE.`;
   }
 }
 
-// 3. Adaptee: PayPal SDK con interfaz diferente
+// class defect of paypal
 export class PayPalSDK {
   sendPayment(amount: number): string {
     return `✅ Pago de $${amount} procesado con PAYPAL.`;
   }
 }
 
-// 4. Adapter para Stripe que implementa la interfaz esperada
+// We created an adapter for Stripe to be able to use the method name and only change the implementation.
 export class StripeAdapter implements PaymentGateway {
   private stripe: StripeSDK;
 
@@ -26,12 +31,12 @@ export class StripeAdapter implements PaymentGateway {
   }
 
   processPayment(cantidad: number): string {
-    // Traduce la interfaz de Stripe a la que el sistema espera
+    // we use the method of stripe without any problem
     return this.stripe.makePayment(cantidad);
   }
 }
 
-// 5. Adapter para PayPal que implementa la interfaz esperada
+// We created an adapter for PayPal to be able to use the method name and only change the implementation.
 export class PayPalAdapter implements PaymentGateway {
   private paypal: PayPalSDK;
 
@@ -40,7 +45,7 @@ export class PayPalAdapter implements PaymentGateway {
   }
 
   processPayment(cantidad: number): string {
-    // Traduce la interfaz de PayPal a la que el sistema espera
+    // we use the method of paypal without any problem
     return this.paypal.sendPayment(cantidad);
   }
 }

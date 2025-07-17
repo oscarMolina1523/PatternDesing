@@ -16,6 +16,7 @@
 // SMS
 // Push notification
 // The client doesn't need to worry about what type of notification it is; they'll just call a method to send it.
+//more info in my notion: https://www.notion.so/Desing-Pattern-2337c9c9fb1780f9a277c47d6fc37878?source=copy_link
 
 //define the interface to be implemented in all notifications
 interface Notification {

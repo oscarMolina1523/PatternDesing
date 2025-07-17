@@ -7,6 +7,7 @@
 // ✨ When to use Abstract Factory?
 // ✔️ When you need to create multiple products that must always be compatible with each other.
 // ✔️ When you want to ensure consistency of styles or variants.
+//more info in my notion: https://www.notion.so/Desing-Pattern-2337c9c9fb1780f9a277c47d6fc37878?source=copy_link
 
 //This is the interface of type button
 interface Button {

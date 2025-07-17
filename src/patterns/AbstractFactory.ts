@@ -13,3 +13,15 @@ interface AbstractFactory {
     createProductA(): AbstractProductA;
     createProductB(): AbstractProductB;
 }
+
+//this is the concrete factory of a particular product A1, B1
+class ConcreteFactory1 implements AbstractFactory {
+    createProductA(): AbstractProductA { return new ConcreteProductA1(); }
+    createProductB(): AbstractProductB { return new ConcreteProductB1(); }
+}
+
+//this is the concrete factory of a particular product A2, B2
+class ConcreteFactory2 implements AbstractFactory {
+    createProductA(): AbstractProductA { return new ConcreteProductA2(); }
+    createProductB(): AbstractProductB { return new ConcreteProductB2(); }
+}

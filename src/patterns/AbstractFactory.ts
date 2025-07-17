@@ -1,84 +1,95 @@
-//This is the interface of all A products and what they can do
-interface AbstractProductA {
-  usefulFunctionA(): string;
+//This is the interface of type button
+interface Button {
+  render(): string;
 }
-//This is the interface of all B products and what they can do
-interface AbstractProductB {
-  usefulFunctionB(): string;
-  //this method receives a param of type A, so it can collaborate with it
+
+//This is the interface of type button
+interface Checkbox {
+  render(): string;
+  //this method receives a param of type button, so it can collaborate with it
   //example: Imagine that:
-  // ProductA is a Button
-  // ProductB is a Checkbox
   // ✅ The checkbox wants to "collaborate" by changing its state depending on whether the button is active or not.
   // So:
-  // anotherUsefulFunctionB(collaborator: AbstractProductA)
-  // ➡️ It means: "Give me product A, and I'll do something with it."
-  //If you don't need to collaborate with another interface you can skip this method, comment it.
-  anotherUsefulFunctionB(collaborator: AbstractProductA): string;
+  // toggle(button: Button): string;
+  // ➡️ It means: "Give me product button, and I'll do something with it."
+  //If you don't need to collaborate with button interface you can skip this method, comment it.
+    toggle(button: Button): string;
 }
 
-//This method defines what type of products can be created with each method
-interface AbstractFactory {
-  createProductA(): AbstractProductA;
-  createProductB(): AbstractProductB;
+//This interface defines what methods you need implement in the windows factories
+//and mac factories to create the products
+interface GUIFactory {
+  createButton(): Button; //return a type of Button
+  createCheckbox(): Checkbox;//return a type of Checkbox
 }
 
-//this is the concrete factory of a particular product A1, B1
-class ConcreteFactory1 implements AbstractFactory {
-  createProductA(): AbstractProductA {
-    return new ConcreteProductA1();
-  }
-  createProductB(): AbstractProductB {
-    return new ConcreteProductB1();
-  }
-}
 
-//this is the concrete factory of a particular product A2, B2
-class ConcreteFactory2 implements AbstractFactory {
-  createProductA(): AbstractProductA {
-    return new ConcreteProductA2();
+//this is the windows factory 
+class WindowsFactory implements GUIFactory {
+  createButton(): Button {
+    return new WindowsButton();
   }
-  createProductB(): AbstractProductB {
-    return new ConcreteProductB2();
+  createCheckbox(): Checkbox {
+    return new WindowsCheckbox();
   }
 }
 
-class ConcreteProductA1 implements AbstractProductA {
-  usefulFunctionA(): string {
-    return "Result A1";
-  }
-}
-class ConcreteProductA2 implements AbstractProductA {
-  usefulFunctionA(): string {
-    return "Result A2";
-  }
-}
 
-class ConcreteProductB1 implements AbstractProductB {
-  usefulFunctionB(): string {
-    return "Result B1";
+//this is the mac factory
+class MacFactory implements GUIFactory {
+  createButton(): Button {
+    return new MacButton();
   }
-
-  anotherUsefulFunctionB(collaborator: AbstractProductA): string {
-    const result = collaborator.usefulFunctionA();
-    return `B1 collaborates with (${result})`;
-  }
-}
-class ConcreteProductB2 implements AbstractProductB {
-  usefulFunctionB(): string {
-    return "Result B2";
-  }
-
-  anotherUsefulFunctionB(collaborator: AbstractProductA): string {
-    const result = collaborator.usefulFunctionA();
-    return `B2 collaborates with (${result})`;
+  createCheckbox(): Checkbox {
+    return new MacCheckbox();
   }
 }
 
-function clientCode(factory: AbstractFactory) {
-  const productA = factory.createProductA();
-  const productB = factory.createProductB();
 
-  console.log(productB.usefulFunctionB());
-  console.log(productB.anotherUsefulFunctionB(productA));
+//button for only windows
+class WindowsButton implements Button {
+  render(): string {
+    return "Renderizando Botón Windows";
+  }
+}
+
+//button for only mac
+class MacButton implements Button {
+  render(): string {
+    return "Renderizando Botón Mac";
+  }
+}
+
+//checkbox for only windows
+class WindowsCheckbox implements Checkbox {
+  render(): string {
+    return "Renderizando Checkbox Windows";
+  }
+
+  toggle(button: Button): string {
+    const btnRender = button.render();
+    return `Checkbox Windows interactúa con (${btnRender})`;
+  }
+}
+
+//checkbox for only mac
+class MacCheckbox implements Checkbox {
+  render(): string {
+    return "Renderizando Checkbox Mac";
+  }
+
+  toggle(button: Button): string {
+    const btnRender = button.render();
+    return `Checkbox Mac interactúa con (${btnRender})`;
+  }
+}
+
+
+function app(factory: GUIFactory) {
+  const button = factory.createButton();
+  const checkbox = factory.createCheckbox();
+
+  console.log(button.render());
+  console.log(checkbox.render());
+  console.log(checkbox.toggle(button));
 }

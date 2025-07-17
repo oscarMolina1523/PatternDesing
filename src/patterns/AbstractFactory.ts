@@ -18,14 +18,14 @@ interface Checkbox {
 
 //This interface defines what methods you need implement in the windows factories
 //and mac factories to create the products
-interface GUIFactory {
+export interface GUIFactory {
   createButton(): Button; //return a type of Button
   createCheckbox(): Checkbox;//return a type of Checkbox
 }
 
 
 //this is the windows factory 
-class WindowsFactory implements GUIFactory {
+export class WindowsFactory implements GUIFactory {
   createButton(): Button {
     return new WindowsButton();
   }
@@ -36,7 +36,7 @@ class WindowsFactory implements GUIFactory {
 
 
 //this is the mac factory
-class MacFactory implements GUIFactory {
+export class MacFactory implements GUIFactory {
   createButton(): Button {
     return new MacButton();
   }

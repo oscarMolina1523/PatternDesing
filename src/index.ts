@@ -1,5 +1,6 @@
 import express, { Request, Response } from "express";
 import { EmailCreator, SMSCreator, PushCreator, Notificationcreator } from "./patterns/PatternFactory";
+import { GUIFactory, MacFactory, WindowsFactory } from "./patterns/AbstractFactory";
 
 const app = express();
 const port = 3000;
@@ -34,6 +35,36 @@ app.post("/notificar", (req: Request, res: Response) => {
   creator.sendNotification(mensaje);
 
   res.json({ success: true, message: `Notificación enviada por ${tipo}` });
+});
+
+// 🚀 Nuevo endpoint para probar Abstract Factory
+app.post("/components", (req: Request, res: Response) => {
+  const { sistema } = req.body;
+
+  let factory: GUIFactory;
+
+  // 🔷 Elegir la fábrica según el sistema
+  switch (sistema) {
+    case "windows":
+      factory = new WindowsFactory();
+      break;
+    case "mac":
+      factory = new MacFactory();
+      break;
+    default:
+      return res.status(400).json({ error: "Sistema no soportado (windows/mac)" });
+  }
+
+  // 🔷 Usar la fábrica para crear productos
+  const button = factory.createButton();
+  const checkbox = factory.createCheckbox();
+
+  // 🔷 Preparar respuesta para el cliente
+  res.json({
+    button: button.render(),
+    checkbox: checkbox.render(),
+    toggleResult: checkbox.toggle(button)
+  });
 });
 
 app.listen(port, () => {

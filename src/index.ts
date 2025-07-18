@@ -32,7 +32,7 @@ app.post("/notificar", (req: Request, res: Response) => {
       return res.status(400).json({ error: "Tipo de notificación no soportado" });
   }
 
-  // Usa el factory method para enviar la notificación
+  // use factory method to send a notification
   creator.sendNotification(mensaje);
 
   res.json({ success: true, message: `Notificación enviada por ${tipo}` });

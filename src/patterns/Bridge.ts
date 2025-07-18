@@ -35,3 +35,19 @@ class SonyTV implements Device {
 
   setChannel(channel: number) { this.channel = channel; console.log(`Sony TV canal ${channel}`); }
 }
+
+class RemoteControl {
+  protected device: Device;
+
+  constructor(device: Device) {
+    this.device = device;
+  }
+
+  togglePower() {
+    if (this.device.isEnabled()) {
+      this.device.disable();
+    } else {
+      this.device.enable();
+    }
+  }
+}

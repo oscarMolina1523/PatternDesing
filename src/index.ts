@@ -38,13 +38,13 @@ app.post("/notificar", (req: Request, res: Response) => {
   res.json({ success: true, message: `Notificación enviada por ${tipo}` });
 });
 
-// 🚀 Nuevo endpoint para probar Abstract Factory
+// 🚀 Endpoint ot test abstract factory
 app.post("/components", (req: Request, res: Response) => {
   const { sistema } = req.body;
 
   let factory: GUIFactory;
 
-  // 🔷 Elegir la fábrica según el sistema
+  // 🔷 choose the factory according to the system
   switch (sistema) {
     case "windows":
       factory = new WindowsFactory();
@@ -56,11 +56,11 @@ app.post("/components", (req: Request, res: Response) => {
       return res.status(400).json({ error: "Sistema no soportado (windows/mac)" });
   }
 
-  // 🔷 Usar la fábrica para crear productos
+  // 🔷 use the factory to create the product
   const button = factory.createButton();
   const checkbox = factory.createCheckbox();
 
-  // 🔷 Preparar respuesta para el cliente
+  // 🔷 prepair a response to client
   res.json({
     button: button.render(),
     checkbox: checkbox.render(),

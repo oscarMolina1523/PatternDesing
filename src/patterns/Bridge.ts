@@ -36,13 +36,21 @@ class SonyTV implements Device {
   setChannel(channel: number) { this.channel = channel; console.log(`Sony TV canal ${channel}`); }
 }
 
+//this remote control receives a device and 
+//you can inherit all the methods of the device
+//and use them without problems
 class RemoteControl {
+
   protected device: Device;
 
   constructor(device: Device) {
     this.device = device;
   }
 
+  //to control if is on or off
+  //this method is for all the devices
+  //no problem if is a Samsung or Sony
+  //as long as it is of type device
   togglePower() {
     if (this.device.isEnabled()) {
       this.device.disable();

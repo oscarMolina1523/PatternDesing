@@ -84,7 +84,8 @@ app.post("/pagar", (req: Request, res: Response) => {
     default:
       return res.status(400).json({ error: "Proveedor no soportado (stripe, paypal)" });
   }
-
+  //here you only use the method processPayment
+  //and the adapter will take care of the rest
   const resultado = pasarela.processPayment(cantidad);
   res.json({ success: true, resultado });
 });

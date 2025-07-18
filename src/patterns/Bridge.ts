@@ -59,3 +59,12 @@ class RemoteControl {
     }
   }
 }
+
+//this class extends the RemoteControl class
+//and adds a mute method
+class AdvancedRemoteControl extends RemoteControl {
+  mute() {
+    console.log("Muted the TV");
+  }
+}
+

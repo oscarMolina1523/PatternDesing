@@ -1,4 +1,23 @@
+//this interface defines the structure for a handler in the Chain of Responsibility pattern
 interface Handler {
+    //this method sets the next handler in the chain
   setNext(handler: Handler): Handler;
+  //this method processes the request and returns a response or null if it can't handle it
   handle(request: string): string | null;
+}
+
+abstract class SupportHandler implements Handler {
+  private nextHandler: Handler;
+
+  public setNext(handler: Handler): Handler {
+    this.nextHandler = handler;
+    return handler; // permite encadenar fácilmente
+  }
+
+  public handle(request: string): string | null {
+    if (this.nextHandler) {
+      return this.nextHandler.handle(request);
+    }
+    return null; // si no hay más en la cadena
+  }
 }

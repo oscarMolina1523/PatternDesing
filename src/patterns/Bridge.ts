@@ -1,6 +1,6 @@
 // This is the device interface, it defines the methods that any device must implement
 //more info in my notion: https://www.notion.so/Desing-Pattern-2337c9c9fb1780f9a277c47d6fc37878?source=copy_link
-interface Device {
+export interface Device {
   isEnabled(): boolean;
   enable(): void;
   disable(): void;
@@ -8,7 +8,7 @@ interface Device {
 }
 
 //this class implements the Device interface for a Samsung basic TV
-class SamsungTV implements Device {
+export class SamsungTV implements Device {
   // property to know if is on or off
   private enabled = false;
   // property to know the current channel
@@ -24,7 +24,7 @@ class SamsungTV implements Device {
 }
 
 //this class implements the Device interface for a Sony basic TV
-class SonyTV implements Device {
+export class SonyTV implements Device {
   private enabled = false;
   private channel = 1;
 
@@ -40,7 +40,7 @@ class SonyTV implements Device {
 //this remote control receives a device and 
 //you can inherit all the methods of the device
 //and use them without problems
-class RemoteControl {
+export class RemoteControl {
 
   protected device: Device;
 
@@ -63,7 +63,7 @@ class RemoteControl {
 
 //this class extends the RemoteControl class
 //and adds a mute method
-class AdvancedRemoteControl extends RemoteControl {
+export class AdvancedRemoteControl extends RemoteControl {
   mute() {
     console.log("Muted the TV");
   }

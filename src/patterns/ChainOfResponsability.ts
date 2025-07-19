@@ -7,7 +7,7 @@ interface Handler {
 }
 
 abstract class SupportHandler implements Handler {
-  private nextHandler: Handler;
+  private nextHandler: Handler | null = null;
 
   public setNext(handler: Handler): Handler {
     this.nextHandler = handler;

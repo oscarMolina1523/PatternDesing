@@ -30,3 +30,12 @@ class BotHandler extends SupportHandler {
     return super.handle(request); // pass to the next handler
   }
 }
+
+class JuniorAgentHandler extends SupportHandler {
+  handle(request: string): string | null {
+    if (request === "Password Reset") {
+      return "Agente Junior: Te ayudé a resetear tu contraseña.";
+    }
+    return super.handle(request);
+  }
+}

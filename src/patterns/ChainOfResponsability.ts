@@ -27,6 +27,6 @@ class BotHandler extends SupportHandler {
     if (request === "FAQ") {
       return "Bot: Aquí está la respuesta automática.";
     }
-    return super.handle(request); // pasa al siguiente
+    return super.handle(request); // pass to the next handler
   }
 }

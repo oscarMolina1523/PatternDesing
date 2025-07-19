@@ -91,6 +91,52 @@ app.post("/pagar", (req: Request, res: Response) => {
   res.json({ success: true, resultado });
 });
 
+app.post("/control", (req: Request, res: Response) => {
+  const { tv, advanced } = req.body;
+
+  let device;
+  let remote;
+
+  // 🔷 1. Elegir la TV
+  switch (tv) {
+    case "samsung":
+      device = new SamsungTV();
+      break;
+    case "sony":
+      device = new SonyTV();
+      break;
+    default:
+      return res.status(400).json({ error: "TV no soportada (samsung, sony)" });
+  }
+
+  // 🔷 2. Elegir el control
+  if (advanced) {
+    remote = new AdvancedRemoteControl(device);
+  } else {
+    remote = new RemoteControl(device);
+  }
+
+  // 🔷 3. Usar el control
+  remote.togglePower();
+  device.setChannel(10);
+
+  // 🔷 4. Si es AdvancedRemoteControl, usar mute
+  let muted = false;
+  if (advanced) {
+    (remote as AdvancedRemoteControl).mute();
+    muted = true;
+  }
+
+  // 🔷 5. Responder al cliente
+  res.json({
+    success: true,
+    tv,
+    control: advanced ? "AdvancedRemoteControl" : "RemoteControl",
+    muted
+  });
+});
+
+
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });

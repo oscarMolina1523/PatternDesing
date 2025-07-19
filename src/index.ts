@@ -91,13 +91,16 @@ app.post("/pagar", (req: Request, res: Response) => {
   res.json({ success: true, resultado });
 });
 
+//this method use the Bridge pattern
 app.post("/control", (req: Request, res: Response) => {
+  //receive data of tv like samsung or sony
+  //and if the control is advanced or not (boolean)
   const { tv, advanced } = req.body;
 
   let device;
   let remote;
 
-  // 🔷 1. Elegir la TV
+  // select the device based on the TV type
   switch (tv) {
     case "samsung":
       device = new SamsungTV();
@@ -109,25 +112,25 @@ app.post("/control", (req: Request, res: Response) => {
       return res.status(400).json({ error: "TV no soportada (samsung, sony)" });
   }
 
-  // 🔷 2. Elegir el control
+  // if advanced is true, use AdvancedRemoteControl, otherwise use RemoteControl
   if (advanced) {
     remote = new AdvancedRemoteControl(device);
   } else {
     remote = new RemoteControl(device);
   }
 
-  // 🔷 3. Usar el control
+  // use the remote to control the TV
   remote.togglePower();
   device.setChannel(10);
 
-  // 🔷 4. Si es AdvancedRemoteControl, usar mute
+  // if is AdvancedRemoteControl, mute the TV
   let muted = false;
   if (advanced) {
     (remote as AdvancedRemoteControl).mute();
     muted = true;
   }
 
-  // 🔷 5. Responder al cliente
+  // response for the client
   res.json({
     success: true,
     tv,

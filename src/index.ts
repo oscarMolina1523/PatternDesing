@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import { EmailCreator, SMSCreator, PushCreator, Notificationcreator } from "./patterns/PatternFactory";
 import { GUIFactory, MacFactory, WindowsFactory } from "./patterns/AbstractFactory";
 import { PaymentGateway, PayPalAdapter, PayPalSDK, StripeAdapter, StripeSDK } from "./patterns/Adapter";
+import { SamsungTV, SonyTV, RemoteControl, AdvancedRemoteControl } from "./patterns/Bridge";
 
 const app = express();
 const port = 3000;

@@ -21,3 +21,12 @@ abstract class SupportHandler implements Handler {
     return null; //if no handler can process the request, return null
   }
 }
+
+class BotHandler extends SupportHandler {
+  handle(request: string): string | null {
+    if (request === "FAQ") {
+      return "Bot: Aquí está la respuesta automática.";
+    }
+    return super.handle(request); // pasa al siguiente
+  }
+}

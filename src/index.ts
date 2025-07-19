@@ -3,6 +3,11 @@ import { EmailCreator, SMSCreator, PushCreator, Notificationcreator } from "./pa
 import { GUIFactory, MacFactory, WindowsFactory } from "./patterns/AbstractFactory";
 import { PaymentGateway, PayPalAdapter, PayPalSDK, StripeAdapter, StripeSDK } from "./patterns/Adapter";
 import { SamsungTV, SonyTV, RemoteControl, AdvancedRemoteControl } from "./patterns/Bridge";
+import {
+  BotHandler,
+  JuniorAgentHandler,
+  SeniorAgentHandler
+} from "./patterns/ChainOfResponsability";
 
 const app = express();
 const port = 3000;
@@ -136,6 +141,28 @@ app.post("/control", (req: Request, res: Response) => {
     tv,
     control: advanced ? "AdvancedRemoteControl" : "RemoteControl",
     muted
+  });
+});
+
+// 🚀 Endpoint to test Chain of Responsibility
+app.post("/soporte", (req: Request, res: Response) => {
+  const { solicitud } = req.body;
+
+  // crea los handlers
+  const bot = new BotHandler();
+  const junior = new JuniorAgentHandler();
+  const senior = new SeniorAgentHandler();
+
+  // define la cadena: Bot -> Junior -> Senior
+  bot.setNext(junior).setNext(senior);
+
+  // usa la cadena para manejar la solicitud
+  const resultado = bot.handle(solicitud);
+
+  res.json({
+    success: true,
+    solicitud,
+    resultado
   });
 });
 

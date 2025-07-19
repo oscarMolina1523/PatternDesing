@@ -1,4 +1,5 @@
 // This is the device interface, it defines the methods that any device must implement
+//more info in my notion: https://www.notion.so/Desing-Pattern-2337c9c9fb1780f9a277c47d6fc37878?source=copy_link
 interface Device {
   isEnabled(): boolean;
   enable(): void;

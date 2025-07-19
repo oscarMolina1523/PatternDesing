@@ -39,3 +39,10 @@ class JuniorAgentHandler extends SupportHandler {
     return super.handle(request);
   }
 }
+
+class SeniorAgentHandler extends SupportHandler {
+  handle(request: string): string | null {
+    return "Agente Senior: Revisé tu caso complejo y te ayudé.";
+  }
+}
+

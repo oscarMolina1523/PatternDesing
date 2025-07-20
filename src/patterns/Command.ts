@@ -20,3 +20,11 @@ class LightOnCommand implements Command {
     this.light.turnOn(); 
   }
 }
+
+//concrete command, this turn off the light
+class LightOffCommand implements Command {
+  constructor(private light: Light) {}
+  execute() {
+    this.light.turnOff(); 
+  }
+}

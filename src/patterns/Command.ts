@@ -12,3 +12,11 @@ class Light {
 interface Command {
   execute(): void;
 }
+
+//concrete command, this turn on the light
+class LightOnCommand implements Command {
+  constructor(private light: Light) {}
+  execute() {
+    this.light.turnOn(); 
+  }
+}

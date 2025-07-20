@@ -8,3 +8,7 @@ class Light {
   }
 }
 
+// Command interface
+interface Command {
+  execute(): void;
+}

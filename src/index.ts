@@ -8,6 +8,13 @@ import {
   JuniorAgentHandler,
   SeniorAgentHandler
 } from "./patterns/ChainOfResponsability";
+import {
+  Light,
+  LightOnCommand,
+  LightOffCommand,
+  RemoteControl as LightRemoteControl 
+} from "./patterns/Command";
+
 
 const app = express();
 const port = 3000;
@@ -163,6 +170,32 @@ app.post("/soporte", (req: Request, res: Response) => {
     success: true,
     solicitud,
     resultado
+  });
+});
+
+// 🚀 Endpoint to test Command pattern
+app.post("/luz", (req: Request, res: Response) => {
+  const { accion } = req.body;
+
+  const luz = new Light();
+  const control = new LightRemoteControl ();
+
+  if (accion === "encender") {
+    const encenderCommand = new LightOnCommand(luz);
+    control.setCommand(encenderCommand);
+  } else if (accion === "apagar") {
+    const apagarCommand = new LightOffCommand(luz);
+    control.setCommand(apagarCommand);
+  } else {
+    return res.status(400).json({ error: "Acción no soportada (encender/apagar)" });
+  }
+
+  // ejecuta el comando
+  control.pressButton();
+
+  res.json({
+    success: true,
+    accion
   });
 });
 

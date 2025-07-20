@@ -1,5 +1,5 @@
 //real light , it tuns on and off
-class Light {
+export class Light {
   turnOn() {
     console.log("💡 La luz se encendió.");
   }
@@ -9,12 +9,12 @@ class Light {
 }
 
 // Command interface
-interface Command {
+export interface Command {
   execute(): void;
 }
 
 //concrete command, this turn on the light
-class LightOnCommand implements Command {
+export class LightOnCommand implements Command {
   constructor(private light: Light) {}
   execute() {
     this.light.turnOn();
@@ -22,7 +22,7 @@ class LightOnCommand implements Command {
 }
 
 //concrete command, this turn off the light
-class LightOffCommand implements Command {
+export class LightOffCommand implements Command {
   constructor(private light: Light) {}
   execute() {
     this.light.turnOff();
@@ -31,7 +31,7 @@ class LightOffCommand implements Command {
 
 //remote control to execute commands of the light
 
-class RemoteControl {
+export class RemoteControl {
   private command?: Command;
 
   setCommand(command: Command) {

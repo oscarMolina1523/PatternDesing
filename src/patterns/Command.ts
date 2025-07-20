@@ -28,3 +28,17 @@ class LightOffCommand implements Command {
     this.light.turnOff(); 
   }
 }
+
+//remote control to execute commands of the light
+
+class RemoteControl {
+  private command: Command;
+
+  setCommand(command: Command) {
+    this.command = command;
+  }
+
+  pressButton() {
+    this.command.execute();
+  }
+}

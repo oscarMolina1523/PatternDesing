@@ -1,4 +1,5 @@
 //this interface defines the structure for a handler in the Chain of Responsibility pattern
+//more info in my notion: https://www.notion.so/Desing-Pattern-2337c9c9fb1780f9a277c47d6fc37878?source=copy_link
 export interface Handler {
     //this method sets the next handler in the chain
   setNext(handler: Handler): Handler;

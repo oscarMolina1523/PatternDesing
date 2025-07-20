@@ -17,7 +17,7 @@ interface Command {
 class LightOnCommand implements Command {
   constructor(private light: Light) {}
   execute() {
-    this.light.turnOn(); 
+    this.light.turnOn();
   }
 }
 
@@ -25,20 +25,24 @@ class LightOnCommand implements Command {
 class LightOffCommand implements Command {
   constructor(private light: Light) {}
   execute() {
-    this.light.turnOff(); 
+    this.light.turnOff();
   }
 }
 
 //remote control to execute commands of the light
 
 class RemoteControl {
-  private command: Command;
+  private command?: Command;
 
   setCommand(command: Command) {
     this.command = command;
   }
 
   pressButton() {
-    this.command.execute();
+    if (this.command) {
+      this.command.execute();
+    } else {
+      console.log("No hay comando asignado.");
+    }
   }
 }

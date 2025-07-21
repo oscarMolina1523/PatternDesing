@@ -190,7 +190,7 @@ app.post("/luz", (req: Request, res: Response) => {
     return res.status(400).json({ error: "Acción no soportada (encender/apagar)" });
   }
 
-  // ejecuta el comando
+  // execute the command
   control.pressButton();
 
   res.json({

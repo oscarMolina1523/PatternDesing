@@ -35,11 +35,16 @@ class WordsCollection implements Aggregator {
     return this.items.length;
   }
 
+  //this method is used to get the iterator of the collection
   getIterator(): MyIterator<string> {
+    //"this" refers to the current instance of WordsCollection
     return new AlphabeticalOrderIterator(this);
   }
 
+    //this method is used to get the reverse iterator of the collection
   getReverseIterator(): MyIterator<string> {
+    //the true parameter indicates that the iterator will return the items in reverse order
+    //"this" refers to the current instance of WordsCollection
     return new AlphabeticalOrderIterator(this, true);
   }
 }

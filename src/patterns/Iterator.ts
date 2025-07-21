@@ -52,24 +52,39 @@ class WordsCollection implements Aggregator {
 //this is the iterator that implements the MyIterator interface
 //this iterator will return the items of the collection in alphabetical order
 class AlphabeticalOrderIterator implements MyIterator<string> {
+    //this is the position of the iterator by defect is 0
   private position: number = 0;
+  //this is the reverse flag to indicate if the iterator will return the items in reverse order
+  //by defect is false
   private reverse: boolean = false;
 
+  //constructor receives the collection and a boolean to indicate if the iterator
+  //  will return the items in reverse order by defect is false
   constructor(private collection: WordsCollection, reverse: boolean = false) {
     this.reverse = reverse;
+    //if the reverse is true, the position will be the last item of the collection
+    //if the reverse is false, the position will be the first item of the collection
     this.position = reverse ? collection.getCount() - 1 : 0;
   }
 
+  //this method is used to reset the iterator to the first item of the collection
+  //now is not necessary but if you want to use the iterator again
+  //you can call this method to reset the position whitout creating a new instance
   rewind() {
     this.position = this.reverse ? this.collection.getCount() - 1 : 0;
   }
 
+  //this method returns the current item of the collection
   current(): string {
     return this.collection.getItems()[this.position];
   }
 
+  //this method returns the next item of the collection and moves the position
   next(): string {
     const item = this.collection.getItems()[this.position];
+    // if the reverse is true, the position will be decremented
+    // if the reverse is false, the position will be incremented
+    //similar to have --> this.position = this.position + (this.reverse ? -1 : 1);
     this.position += this.reverse ? -1 : 1;
     return item;
   }

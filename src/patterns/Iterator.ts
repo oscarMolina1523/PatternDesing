@@ -49,6 +49,8 @@ class WordsCollection implements Aggregator {
   }
 }
 
+//this is the iterator that implements the MyIterator interface
+//this iterator will return the items of the collection in alphabetical order
 class AlphabeticalOrderIterator implements MyIterator<string> {
   private position: number = 0;
   private reverse: boolean = false;

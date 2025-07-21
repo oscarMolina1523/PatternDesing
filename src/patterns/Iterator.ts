@@ -6,3 +6,8 @@ interface Iterator<T> {
   valid(): boolean; // 🔹 verification if the actual index is valid
   rewind(): void; // 🔹 reset to the first element
 }
+
+//interface aggregator for the iterator pattern
+interface Aggregator {
+  getIterator(): Iterator<string>;
+}

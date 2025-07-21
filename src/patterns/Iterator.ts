@@ -16,7 +16,7 @@ interface Aggregator {
 //my collection that implements the aggregator interface
 //this collection is only a simple example of a collection of words
 //you can implement it with any type of data
-class WordsCollection implements Aggregator {
+export class WordsCollection implements Aggregator {
     //static collection of words
   private items: string[] = [];
 

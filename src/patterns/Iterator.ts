@@ -89,14 +89,18 @@ class AlphabeticalOrderIterator implements MyIterator<string> {
     return item;
   }
 
+  //this method returns the actual index of the iterator
   key(): number {
     return this.position;
   }
 
+  //this method verifies if the actual index is valid
   valid(): boolean {
     if (this.reverse) {
+        // if the reverse is true, the position must be greater than or equal to 0
       return this.position >= 0;
     }
+    // if the reverse is false, the position must be less than the count of items
     return this.position < this.collection.getCount();
   }
 }

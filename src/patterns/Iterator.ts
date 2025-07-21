@@ -9,5 +9,6 @@ interface Iterator<T> {
 
 //interface aggregator for the iterator pattern
 interface Aggregator {
+    // is not necesary to return a string it could be any type example: User, Product, etc.
   getIterator(): Iterator<string>;
 }

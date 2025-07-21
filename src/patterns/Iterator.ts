@@ -20,14 +20,17 @@ class WordsCollection implements Aggregator {
     //static collection of words
   private items: string[] = [];
 
+  //this method is used to add items to the collection
   addItem(item: string): void {
     this.items.push(item);
   }
 
+  //this method is used to get the items of the collection
   getItems(): string[] {
     return this.items;
   }
 
+  //this method is used to get the count of items in the collection
   getCount(): number {
     return this.items.length;
   }

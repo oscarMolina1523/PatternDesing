@@ -232,6 +232,14 @@ app.post("/iterator", (req: Request, res: Response) => {
     palabrasOriginales: palabras,
     resultado
   });
+
+  // Example request body to test this endpoint
+  // You can use Postman or any HTTP
+  // {
+  // "palabras": ["manzana", "banana", "pera"],
+  // "reverse": true
+  // }
+
 });
 
 

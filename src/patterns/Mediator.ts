@@ -17,3 +17,20 @@ class User {
     console.log(`${this.name} recibe: ${message}`);
   }
 }
+
+class ChatRoom implements ChatRoomMediator {
+  private users: User[] = [];
+
+  addUser(user: User): void {
+    this.users.push(user);
+  }
+
+  sendMessage(message: string, sender: User): void {
+    for (let user of this.users) {
+      // no le envía el mensaje a sí mismo
+      if (user !== sender) {
+        user.receive(message);
+      }
+    }
+  }
+}

@@ -27,16 +27,20 @@ class User {
   }
 }
 
+//chatroom implements the ChatRoomMediator interface
 class ChatRoom implements ChatRoomMediator {
+    //an array of users in the chat room
   private users: User[] = [];
 
+  //method to add a user to the chat room
   addUser(user: User): void {
     this.users.push(user);
   }
 
+  //method to send a message to all users except the sender
   sendMessage(message: string, sender: User): void {
     for (let user of this.users) {
-      // no le envía el mensaje a sí mismo
+      // check if the user is not the sender
       if (user !== sender) {
         user.receive(message);
       }

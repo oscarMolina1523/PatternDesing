@@ -1,5 +1,5 @@
 //this interface defines the methods for the mediator pattern
-interface ChatRoomMediator {
+export interface ChatRoomMediator {
     //this method send message to all users except the sender
     //here the user is the sender of the message
   sendMessage(message: string, user: User): void;
@@ -9,7 +9,7 @@ interface ChatRoomMediator {
 }
 
 //class user represents a user in the chat room
-class User {
+export class User {
     //constructor receives a name for the user and a chat room mediator
   //the chat room mediator is used to send messages to other users
   constructor(private name: string, private chatRoom: ChatRoomMediator) {}
@@ -28,7 +28,7 @@ class User {
 }
 
 //chatroom implements the ChatRoomMediator interface
-class ChatRoom implements ChatRoomMediator {
+export class ChatRoom implements ChatRoomMediator {
     //an array of users in the chat room
   private users: User[] = [];
 

@@ -8,15 +8,20 @@ interface ChatRoomMediator {
   addUser(user: User): void;
 }
 
-
+//class user represents a user in the chat room
 class User {
+    //constructor receives a name for the user and a chat room mediator
+  //the chat room mediator is used to send messages to other users
   constructor(private name: string, private chatRoom: ChatRoomMediator) {}
 
+  //method to send a message
   send(message: string) {
     console.log(`${this.name} envía: ${message}`);
+    //the message is sent to the chat room mediator
     this.chatRoom.sendMessage(message, this);
   }
 
+  //method to receive a message
   receive(message: string) {
     console.log(`${this.name} recibe: ${message}`);
   }

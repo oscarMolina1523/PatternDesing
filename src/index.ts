@@ -15,6 +15,7 @@ import {
   RemoteControl as LightRemoteControl 
 } from "./patterns/Command";
 import { WordsCollection } from "./patterns/Iterator";
+import { ChatRoom, User } from "./patterns/Mediator";
 
 
 const app = express();
@@ -241,6 +242,57 @@ app.post("/iterator", (req: Request, res: Response) => {
   // }
 
 });
+
+
+// 🚀 Endpoint to test Mediator pattern
+app.post("/chat", (req: Request, res: Response) => {
+  const { mensajes } = req.body;
+
+  if (!mensajes || !Array.isArray(mensajes)) {
+    return res.status(400).json({ error: "Se requiere un array de mensajes [{usuario, mensaje}]" });
+  }
+
+  // crea el chat room (mediator)
+  const chatRoom = new ChatRoom();
+
+  // crea usuarios de ejemplo
+  const oscar = new User("Oscar", chatRoom);
+  const maria = new User("Maria", chatRoom);
+  const juan = new User("Juan", chatRoom);
+
+  // los agrega al chat
+  chatRoom.addUser(oscar);
+  chatRoom.addUser(maria);
+  chatRoom.addUser(juan);
+
+  const respuestas: string[] = [];
+
+  // procesa cada mensaje
+  mensajes.forEach(({ usuario, mensaje }) => {
+    switch (usuario) {
+      case "Oscar":
+        oscar.send(mensaje);
+        respuestas.push(`${usuario} envió: ${mensaje}`);
+        break;
+      case "Maria":
+        maria.send(mensaje);
+        respuestas.push(`${usuario} envió: ${mensaje}`);
+        break;
+      case "Juan":
+        juan.send(mensaje);
+        respuestas.push(`${usuario} envió: ${mensaje}`);
+        break;
+      default:
+        respuestas.push(`Usuario ${usuario} no está en el chat`);
+    }
+  });
+
+  res.json({
+    success: true,
+    chat: respuestas
+  });
+});
+
 
 
 app.listen(port, () => {

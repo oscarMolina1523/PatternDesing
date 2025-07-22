@@ -14,6 +14,7 @@ import {
   LightOffCommand,
   RemoteControl as LightRemoteControl 
 } from "./patterns/Command";
+import { WordsCollection } from "./patterns/Iterator";
 
 
 const app = express();
@@ -196,6 +197,40 @@ app.post("/luz", (req: Request, res: Response) => {
   res.json({
     success: true,
     accion
+  });
+});
+
+// 🚀 Endpoint to test Iterator pattern
+app.post("/iterator", (req: Request, res: Response) => {
+  const { palabras, reverse } = req.body;
+
+  // validate if palabras is an array
+  if (!Array.isArray(palabras)) {
+    return res.status(400).json({ error: "Se requiere un array de palabras en el body" });
+  }
+
+  // create new WordsCollection
+  const collection = new WordsCollection();
+
+  // add each palabra to the collection
+  palabras.forEach((p) => collection.addItem(p));
+
+  // get iterator normal or reverse based on reverse flag
+  const iterator = reverse ? collection.getReverseIterator() : collection.getIterator();
+
+  const resultado: string[] = [];
+
+  // iterate through the collection using the iterator
+  while (iterator.valid()) {
+    resultado.push(iterator.next());
+  }
+
+  // send response to client
+  res.json({
+    success: true,
+    reverse: !!reverse,
+    palabrasOriginales: palabras,
+    resultado
   });
 });
 

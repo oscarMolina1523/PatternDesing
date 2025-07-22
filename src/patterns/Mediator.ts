@@ -34,3 +34,17 @@ class ChatRoom implements ChatRoomMediator {
     }
   }
 }
+
+//example to use the ChatRoom and User classes
+// const chatRoom = new ChatRoom();
+
+// const user1 = new User("Oscar", chatRoom);
+// const user2 = new User("Maria", chatRoom);
+// const user3 = new User("Juan", chatRoom);
+
+// chatRoom.addUser(user1);
+// chatRoom.addUser(user2);
+// chatRoom.addUser(user3);
+
+// user1.send("Hola a todos!");
+// user3.send("Hola Oscar!");

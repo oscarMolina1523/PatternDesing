@@ -1,6 +1,10 @@
 //this interface defines the methods for the mediator pattern
 interface ChatRoomMediator {
+    //this method send message to all users except the sender
+    //here the user is the sender of the message
   sendMessage(message: string, user: User): void;
+
+  //add a new user to the chatroom
   addUser(user: User): void;
 }
 

@@ -13,3 +13,15 @@ class Burger {
     console.log(`🍔 Tu hamburguesa tiene: ${this.parts.join(", ")}`);
   }
 }
+
+// 🍔 Builder Interface for creating a Burger
+interface BurgerBuilder {
+  addPan(): void;
+  addCarne(): void;
+  addQueso(): void;
+  addLechuga(): void;
+  addTomate(): void;
+  addSalsa(salsa: string): void;
+  setTamaño(tamaño: string): void;
+  getBurger(): Burger;
+}

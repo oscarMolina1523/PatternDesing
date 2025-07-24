@@ -29,7 +29,7 @@ interface BurgerBuilder {
 // 🍔 Concrete Builder that implements the BurgerBuilder interface
 class ConcreteBurgerBuilder implements BurgerBuilder {
     // 🍔 this is the Burger that we are building
-  private burger: Burger;
+  private burger!: Burger;
 
   constructor() {
     // 🍔 Initialize a new Burger instance
@@ -80,7 +80,7 @@ class ConcreteBurgerBuilder implements BurgerBuilder {
 
 // 👨‍💼 Director: define secuence of construction
 class BurgerDirector {
-  private builder: BurgerBuilder;
+  private builder!: BurgerBuilder;
 
   //receives the builder to use
   public setBuilder(builder: BurgerBuilder): void {

@@ -129,6 +129,7 @@ function clientCode() {
   const veggieburger = builder.getBurger();
   veggieburger.listParts();
 
+  // 🍔 Now, let's prepare a custom burger manually
   console.log("\n🔧 Preparando CustomBurger (cliente elige pasos manualmente):");
   builder.addPan();
   builder.addCarne();

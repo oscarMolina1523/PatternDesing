@@ -113,11 +113,15 @@ function clientCode() {
   const director = new BurgerDirector();
   //create a concrete builder instance
   const builder = new ConcreteBurgerBuilder();
+  //set the builder to the director
   director.setBuilder(builder);
 
   console.log("🍔 Preparando CheeseBurger:");
+  // 🍔 Use the director to build a cheese burger
   director.buildCheeseBurger();
+  // 🍔 Get the constructed burger from the builder
   const cheeseburger = builder.getBurger();
+  // 🍔 List the parts of the cheese burger
   cheeseburger.listParts();
 
   console.log("\n🥗 Preparando VeggieBurger:");

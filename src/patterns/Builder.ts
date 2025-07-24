@@ -106,3 +106,31 @@ class BurgerDirector {
     this.builder.addSalsa("Mostaza");
   }
 }
+
+// 🚀 Client code
+function clientCode() {
+  const director = new BurgerDirector();
+  const builder = new ConcreteBurgerBuilder();
+  director.setBuilder(builder);
+
+  console.log("🍔 Preparando CheeseBurger:");
+  director.buildCheeseBurger();
+  const cheeseburger = builder.getBurger();
+  cheeseburger.listParts();
+
+  console.log("\n🥗 Preparando VeggieBurger:");
+  director.buildVeggieBurger();
+  const veggieburger = builder.getBurger();
+  veggieburger.listParts();
+
+  console.log("\n🔧 Preparando CustomBurger (cliente elige pasos manualmente):");
+  builder.addPan();
+  builder.addCarne();
+  builder.addTomate();
+  builder.setTamaño("Pequeña");
+  builder.addSalsa("Ketchup");
+  const customBurger = builder.getBurger();
+  customBurger.listParts();
+}
+
+clientCode();

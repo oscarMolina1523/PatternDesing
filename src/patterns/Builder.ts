@@ -109,7 +109,9 @@ class BurgerDirector {
 
 // 🚀 Client code
 function clientCode() {
+    //create a director instance
   const director = new BurgerDirector();
+  //create a concrete builder instance
   const builder = new ConcreteBurgerBuilder();
   director.setBuilder(builder);
 

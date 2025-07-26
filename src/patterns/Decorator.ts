@@ -2,3 +2,9 @@
 interface Notifier {
   send(message: string): void;
 }
+
+class EmailNotifier implements Notifier {
+  send(message: string): void {
+    console.log(`📧 Enviando email: ${message}`);
+  }
+}

@@ -78,6 +78,7 @@ const burger = new MenuItem("🍔 Burger", 5);
 const fries = new MenuItem("🍟 Fries", 2);
 const soda = new MenuItem("🥤 Soda", 1.5);
 
+//create the first combo with burger and fries
 const combo1 = new Combo();
 combo1.add(burger);
 combo1.add(fries);

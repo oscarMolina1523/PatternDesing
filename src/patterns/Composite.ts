@@ -83,6 +83,7 @@ const combo1 = new Combo();
 combo1.add(burger);
 combo1.add(fries);
 
+//create a second combo that contains the first combo and a soda
 const combo2 = new Combo();
 combo2.add(combo1);
 combo2.add(soda);

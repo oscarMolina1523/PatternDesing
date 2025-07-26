@@ -3,6 +3,8 @@ interface Notifier {
   send(message: string): void;
 }
 
+//esta clase implementa notifier pero no es un decorador
+//es un notificador de email normal
 class EmailNotifier implements Notifier {
   send(message: string): void {
     console.log(`📧 Enviando email: ${message}`);

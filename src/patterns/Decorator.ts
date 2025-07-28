@@ -25,3 +25,10 @@ class NotifierDecorator implements Notifier {
   }
 }
 
+class SMSNotifier extends NotifierDecorator {
+  send(message: string): void {
+    super.send(message); // primero ejecuta el anterior
+    console.log(`📲 Enviando SMS: ${message}`);
+  }
+}
+

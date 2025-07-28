@@ -38,3 +38,22 @@ class PushNotifier extends NotifierDecorator {
     console.log(`🔔 Enviando notificación Push: ${message}`);
   }
 }
+
+
+// Enviar solo email
+const emailOnly = new EmailNotifier();
+emailOnly.send("Hola Oscar!");  
+// 📧 Enviando email: Hola Oscar!
+
+// Enviar email + SMS
+const emailAndSMS = new SMSNotifier(new EmailNotifier());
+emailAndSMS.send("Hola Oscar!");
+// 📧 Enviando email: Hola Oscar!
+// 📲 Enviando SMS: Hola Oscar!
+
+// Enviar email + SMS + Push
+const fullNotifier = new PushNotifier(new SMSNotifier(new EmailNotifier()));
+fullNotifier.send("Hola Oscar!");
+// 📧 Enviando email: Hola Oscar!
+// 📲 Enviando SMS: Hola Oscar!
+// 🔔 Enviando notificación Push: Hola Oscar!

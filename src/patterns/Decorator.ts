@@ -11,6 +11,8 @@ class EmailNotifier implements Notifier {
   }
 }
 
+//esta clase implementa notifier pero es un decorador
+//es un decorador que agrega funcionalidad al notificador original
 class NotifierDecorator implements Notifier {
   protected wrappee: Notifier;
 

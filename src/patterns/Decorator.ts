@@ -22,8 +22,8 @@ interface Notifier {
 //esta clase implementa notifier pero no es un decorador
 //es un notificador de email normal
 class EmailNotifier implements Notifier {
-  send(message: string): void {
-    console.log(`📧 Enviando email: ${message}`);
+  send(to: string, message: string): void {
+    sendEmail(to, message);
   }
 }
 
@@ -32,44 +32,43 @@ class EmailNotifier implements Notifier {
 class NotifierDecorator implements Notifier {
   protected wrappee: Notifier;
 
-  constructor(notifier: Notifier) {
-    this.wrappee = notifier;
+  constructor(wrappee: Notifier) {
+    this.wrappee = wrappee;
   }
 
-  send(message: string): void {
-    this.wrappee.send(message);
+  send(to: string, message: string): void {
+    this.wrappee.send(to, message);
   }
 }
 
 class SMSNotifier extends NotifierDecorator {
-  send(message: string): void {
-    super.send(message); // primero ejecuta el anterior
-    console.log(`📲 Enviando SMS: ${message}`);
+  send(to: string, message: string): void {
+    super.send(to, message); // delega primero
+    sendSMS(to, message);    // luego hace lo suyo
   }
 }
 
 class PushNotifier extends NotifierDecorator {
-  send(message: string): void {
-    super.send(message);
-    console.log(`🔔 Enviando notificación Push: ${message}`);
+  send(to: string, message: string): void {
+    super.send(to, message);
+    sendPush(to, message);
   }
 }
 
 
 // Enviar solo email
 const emailOnly = new EmailNotifier();
-emailOnly.send("Hola Oscar!");  
-// 📧 Enviando email: Hola Oscar!
+emailOnly.send("oscar@email.com", "Hola Oscar!");
 
 // Enviar email + SMS
-const emailAndSMS = new SMSNotifier(new EmailNotifier());
-emailAndSMS.send("Hola Oscar!");
-// 📧 Enviando email: Hola Oscar!
-// 📲 Enviando SMS: Hola Oscar!
+const emailSms = new SMSNotifier(new EmailNotifier());
+emailSms.send("50512345678", "Tu código es 1234");
 
-// Enviar email + SMS + Push
-const fullNotifier = new PushNotifier(new SMSNotifier(new EmailNotifier()));
-fullNotifier.send("Hola Oscar!");
-// 📧 Enviando email: Hola Oscar!
-// 📲 Enviando SMS: Hola Oscar!
-// 🔔 Enviando notificación Push: Hola Oscar!
+// Enviar todo: Email + SMS + Push
+const fullNotifier = new PushNotifier(
+  new SMSNotifier(
+    new EmailNotifier()
+  )
+);
+fullNotifier.send("oscar@email.com", "Bienvenido a EduIncluye 🎓");
+

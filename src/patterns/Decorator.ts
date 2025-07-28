@@ -32,3 +32,9 @@ class SMSNotifier extends NotifierDecorator {
   }
 }
 
+class PushNotifier extends NotifierDecorator {
+  send(message: string): void {
+    super.send(message);
+    console.log(`🔔 Enviando notificación Push: ${message}`);
+  }
+}

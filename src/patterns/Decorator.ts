@@ -16,7 +16,7 @@ function sendPush(to: string, message: string) {
 
 // Esta interfaz asegura que todos los tipos de notificación tienen el método send
 interface Notifier {
-  send(message: string): void;
+  send(to: string, message: string): void;
 }
 
 //esta clase implementa notifier pero no es un decorador

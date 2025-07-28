@@ -1,3 +1,19 @@
+function sendEmail(to: string, message: string) {
+  // Aquí usarías nodemailer, SendGrid, etc.
+  console.log(`📧 Email enviado a ${to}: ${message}`);
+}
+
+function sendSMS(to: string, message: string) {
+  // Aquí usarías Twilio, Vonage, etc.
+  console.log(`📲 SMS enviado a ${to}: ${message}`);
+}
+
+function sendPush(to: string, message: string) {
+  // Firebase, OneSignal, etc.
+  console.log(`🔔 Push enviado a ${to}: ${message}`);
+}
+
+
 // Esta interfaz asegura que todos los tipos de notificación tienen el método send
 interface Notifier {
   send(message: string): void;

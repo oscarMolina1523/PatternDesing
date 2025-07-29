@@ -53,3 +53,18 @@ class SmsSubscriber implements Observer {
 }
 
 
+const agency = new NewsAgency();
+
+const emailUser = new EmailSubscriber("usuario@email.com");
+const smsUser = new SmsSubscriber("+50512345678");
+
+agency.subscribe(emailUser);
+agency.subscribe(smsUser);
+
+// Publicamos noticias
+agency.publishNews("¡Nuevo presidente electo!");
+agency.publishNews("Se avecina una tormenta tropical");
+
+agency.unsubscribe(smsUser); // Ya no le llegan noticias al usuario por SMS
+
+agency.publishNews("Descubren agua en Marte");

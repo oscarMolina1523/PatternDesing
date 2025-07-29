@@ -9,3 +9,30 @@ interface Subject {
   unsubscribe(observer: Observer): void;
   notify(): void;
 }
+
+class NewsAgency implements Subject {
+  private observers: Observer[] = [];
+  private latestNews: string = '';
+
+  public subscribe(observer: Observer): void {
+    this.observers.push(observer);
+  }
+
+  public unsubscribe(observer: Observer): void {
+    this.observers = this.observers.filter(sub => sub !== observer);
+  }
+
+  public notify(): void {
+    for (const observer of this.observers) {
+      observer.update(this.latestNews);
+    }
+  }
+
+  // Simula una nueva noticia
+  public publishNews(news: string): void {
+    console.log(`📰 Agencia: Nueva noticia publicada - "${news}"`);
+    this.latestNews = news;
+    this.notify(); // Avisamos a todos los subscriptores
+  }
+}
+

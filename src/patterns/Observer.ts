@@ -11,6 +11,7 @@ interface Subject {
 }
 
 class NewsAgency implements Subject {
+  // Lista de suscriptores
   private observers: Observer[] = [];
   private latestNews: string = '';
 

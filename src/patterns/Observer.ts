@@ -36,3 +36,20 @@ class NewsAgency implements Subject {
   }
 }
 
+class EmailSubscriber implements Observer {
+  constructor(private email: string) {}
+
+  update(news: string): void {
+    console.log(`📧 Enviando noticia a ${this.email}: "${news}"`);
+  }
+}
+
+class SmsSubscriber implements Observer {
+  constructor(private phoneNumber: string) {}
+
+  update(news: string): void {
+    console.log(`📱 Enviando SMS a ${this.phoneNumber}: "${news}"`);
+  }
+}
+
+

@@ -13,6 +13,7 @@ interface Subject {
 class NewsAgency implements Subject {
   // Lista de suscriptores
   private observers: Observer[] = [];
+  // Última noticia publicada
   private latestNews: string = '';
 
   public subscribe(observer: Observer): void {
@@ -25,6 +26,7 @@ class NewsAgency implements Subject {
 
   public notify(): void {
     for (const observer of this.observers) {
+      // Llamamos al método update de cada suscriptor con la última noticia
       observer.update(this.latestNews);
     }
   }

@@ -71,3 +71,16 @@ agency.publishNews("Se avecina una tormenta tropical");
 agency.unsubscribe(smsUser); // Ya no le llegan noticias al usuario por SMS
 
 agency.publishNews("Descubren agua en Marte");
+
+// Ejemplo de salida esperada:
+// 📰 Agencia: Nueva noticia publicada - "¡Nuevo presidente electo!"
+// 📧 Enviando noticia a usuario@email.com: "¡Nuevo presidente electo!"
+// 📱 Enviando SMS a +50512345678: "¡Nuevo presidente electo!"
+
+// 📰 Agencia: Nueva noticia publicada - "Se avecina una tormenta tropical"
+// 📧 Enviando noticia a usuario@email.com: "Se avecina una tormenta tropical"
+// 📱 Enviando SMS a +50512345678: "Se avecina una tormenta tropical"
+
+// 📰 Agencia: Nueva noticia publicada - "Descubren agua en Marte"
+// 📧 Enviando noticia a usuario@email.com: "Descubren agua en Marte"
+

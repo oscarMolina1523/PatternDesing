@@ -1,4 +1,5 @@
 interface PlayerState {
+  setContext(context: MusicPlayer): void;
   play(): void;
   pause(): void;
   stop(): void;
@@ -31,7 +32,7 @@ class MusicPlayer {
 }
 
 class PlayingState implements PlayerState {
-  private context: MusicPlayer;
+  private context!: MusicPlayer;
 
   public setContext(context: MusicPlayer) {
     this.context = context;
@@ -53,7 +54,7 @@ class PlayingState implements PlayerState {
 }
 
 class PausedState implements PlayerState {
-  private context: MusicPlayer;
+  private context!: MusicPlayer;
 
   public setContext(context: MusicPlayer) {
     this.context = context;

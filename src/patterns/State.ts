@@ -29,3 +29,68 @@ class MusicPlayer {
     this.state.stop();
   }
 }
+
+class PlayingState implements PlayerState {
+  private context: MusicPlayer;
+
+  public setContext(context: MusicPlayer) {
+    this.context = context;
+  }
+
+  public play() {
+    console.log("🔁 Ya está reproduciendo.");
+  }
+
+  public pause() {
+    console.log("⏸️ Pausando la música...");
+    this.context.setState(new PausedState());
+  }
+
+  public stop() {
+    console.log("⏹️ Deteniendo la música...");
+    this.context.setState(new StoppedState());
+  }
+}
+
+class PausedState implements PlayerState {
+  private context: MusicPlayer;
+
+  public setContext(context: MusicPlayer) {
+    this.context = context;
+  }
+
+  public play() {
+    console.log("▶️ Reanudando la música...");
+    this.context.setState(new PlayingState());
+  }
+
+  public pause() {
+    console.log("⏸️ Ya está en pausa.");
+  }
+
+  public stop() {
+    console.log("⏹️ Deteniendo desde pausa...");
+    this.context.setState(new StoppedState());
+  }
+}
+
+class StoppedState implements PlayerState {
+  private context!: MusicPlayer;
+
+  public setContext(context: MusicPlayer) {
+    this.context = context;
+  }
+
+  public play() {
+    console.log("▶️ Empezando a reproducir...");
+    this.context.setState(new PlayingState());
+  }
+
+  public pause() {
+    console.log("⏸️ No puedes pausar si está detenido.");
+  }
+
+  public stop() {
+    console.log("⏹️ Ya está detenido.");
+  }
+}

@@ -13,6 +13,8 @@ export class MusicPlayer {
   }
 
   public setState(state: PlayerState) {
+    //state.constructor.name imprimer el nombre de la clase del estado actual es decir
+    //PlayingState, PausedState o StoppedState
     console.log(`🎵 Estado actual: ${state.constructor.name}`);
     this.state = state;
     this.state.setContext(this);

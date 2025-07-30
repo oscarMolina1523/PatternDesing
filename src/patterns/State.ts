@@ -5,7 +5,7 @@ interface PlayerState {
   stop(): void;
 }
 
-class MusicPlayer {
+export class MusicPlayer {
   private state!: PlayerState;
 
   constructor(initialState: PlayerState) {
@@ -75,7 +75,7 @@ class PausedState implements PlayerState {
   }
 }
 
-class StoppedState implements PlayerState {
+export class StoppedState implements PlayerState {
   private context!: MusicPlayer;
 
   public setContext(context: MusicPlayer) {

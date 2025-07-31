@@ -32,6 +32,9 @@ class ShippingCostCalculator {
     this.strategy = strategy;
   }
 
+  //se usa para cambiar de estrategia en tiempo de ejecución
+  // permite al cliente cambiar la estrategia de envío
+  //y calcular el nuevo costo del envío
   setStrategy(strategy: ShippingStrategy) {
     this.strategy = strategy;
   }

@@ -43,3 +43,15 @@ class ShippingCostCalculator {
     return this.strategy.calculate(orderTotal);
   }
 }
+
+//ejemplo de uso en cliente
+const orderTotal = 100;
+
+const calculator = new ShippingCostCalculator(new StandardShipping());
+console.log("Envío estándar:", calculator.calculateCost(orderTotal)); // 5
+
+calculator.setStrategy(new ExpressShipping());
+console.log("Envío exprés:", calculator.calculateCost(orderTotal)); // 15
+
+calculator.setStrategy(new FreeShipping());
+console.log("Envío gratis:", calculator.calculateCost(orderTotal)); // 0

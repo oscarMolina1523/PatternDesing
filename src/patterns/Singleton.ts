@@ -26,7 +26,7 @@ export class Database {
   }
 }
 
-
+//ejemplo de uso en un repositorio y servicio
 // // repositories/UserRepository.ts
 // import { Database } from "../db/Database";
 

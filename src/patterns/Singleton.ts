@@ -25,3 +25,26 @@ export class Database {
     return { rows: [] };
   }
 }
+
+
+// // repositories/UserRepository.ts
+// import { Database } from "../db/Database";
+
+// export class UserRepository {
+//   private db = Database.getInstance(); // usamos el Singleton
+
+//   public getUsers() {
+//     return this.db.query("SELECT * FROM users");
+//   }
+// }
+
+// // services/UserService.ts
+// import { UserRepository } from "../repositories/UserRepository";
+
+// export class UserService {
+//   private repo = new UserRepository();
+
+//   public findAll() {
+//     return this.repo.getUsers();
+//   }
+// }
